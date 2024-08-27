@@ -1,0 +1,18 @@
+*{
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    min-height: 100%;
+}
+.sidebar {
+    width: 15%;
+    height: 100%;
+}
+.outlet {
+    width: 85%;
+    height: 100%;
+}

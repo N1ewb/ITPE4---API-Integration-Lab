@@ -1,0 +1,28 @@
+.sidebar-container{
+    background-color: #343434;
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+.sidebar-links {
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    color: white;
+}
+
+.sidebar-container h2{
+    color: white;
+}
+
+.sidebar-links a{
+    text-decoration: none;
+    color: white;
+
+}

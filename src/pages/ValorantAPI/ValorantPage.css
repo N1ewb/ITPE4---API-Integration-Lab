@@ -1,0 +1,29 @@
+.valorant-page-container{
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.agent-list-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 50px;
+}
+
+.role-list-container{
+    max-width: 100%;
+    background-color: #163555ff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+}
+
+.role-list-container img{
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
