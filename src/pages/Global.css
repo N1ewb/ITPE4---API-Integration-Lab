@@ -2,7 +2,9 @@
     font-family: "Poppins", sans-serif;
     margin: 0;
 }
-
+.layout-container{
+    min-height: 100vh;
+}
 main {
     display: flex;
     flex-direction: row;
