@@ -29,8 +29,8 @@ export default async function handler(req, res) {
 
   try {
     const characters = enka.getAllCharacters();
-    const jsonString = stringify(characters);
-    res.status(200).json(jsonString);
+    const jsonString = CircularJSON.stringify(characters);
+    res.status(200).send(jsonString);
   } catch (error) {
     console.error("Error fetching characters:", error);
     res.status(500).json({ error: error.message });
