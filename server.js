@@ -1,41 +1,48 @@
-import express from "express";
-import { EnkaClient } from "enka-network-api";
 import CircularJSON from "circular-json";
-
-const app = express();
+import { EnkaClient } from "enka-network-api";
 
 const enka = new EnkaClient({
-  cacheDirectory: "./cache",
   showFetchCacheLog: true,
 });
 
-enka.cachedAssetsManager.cacheDirectorySetup();
-enka.cachedAssetsManager.activateAutoCacheUpdater({
-  instant: true,
-  timeout: 60 * 60 * 1000,
-  onUpdateStart: async () => {
-    console.log("Updating Genshin Data...");
-  },
-  onUpdateEnd: async () => {
-    enka.cachedAssetsManager.refreshAllData();
-    console.log("Updating Completed!");
-  },
-});
+// Async function to setup cache and activate auto-updater
+async function initializeEnkaClient() {
+  await enka.cachedAssetsManager.cacheDirectorySetup();
+  enka.cachedAssetsManager.activateAutoCacheUpdater({
+    instant: true,
+    timeout: 60 * 60 * 1000, // 1 hour
+    onUpdateStart: async () => {
+      console.log("Updating Genshin Data...");
+    },
+    onUpdateEnd: async () => {
+      await enka.cachedAssetsManager.refreshAllData();
+      console.log("Updating Completed!");
+    },
+  });
+}
 
-app.get("/", (req, res) => {
-  res.send("Welcome to the Enka Network API Server!");
-});
+// Ensure EnkaClient is initialized
+let enkaInitialized = false;
 
-app.get("/api/characters", async (req, res) => {
+export default async function handler(req, res) {
+  if (req.method !== "GET") {
+    res.status(405).json({ error: "Method Not Allowed" });
+    return;
+  }
+
   try {
+    // Initialize EnkaClient if not already done
+    if (!enkaInitialized) {
+      await initializeEnkaClient();
+      enkaInitialized = true;
+    }
+
+    // Fetch characters after initialization
     const characters = enka.getAllCharacters();
     const jsonString = CircularJSON.stringify(characters);
-    res.send(jsonString);
+    res.status(200).send(jsonString);
   } catch (error) {
+    console.error("Error fetching characters:", error);
     res.status(500).json({ error: error.message });
   }
-});
-
-app.listen(3000, () => {
-  console.log("Server running on http://localhost:3000");
-});
+}
