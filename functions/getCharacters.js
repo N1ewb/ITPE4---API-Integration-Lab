@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 
 // Set up cache directory
-const cacheDir = "/tmp/cache";
+const cacheDir = "./cache";
 const dataDir = path.join(cacheDir, "data");
 if (!fs.existsSync(cacheDir)) {
   fs.mkdirSync(cacheDir, { recursive: true });
