@@ -1,8 +1,8 @@
-import CircularJSON from "circular-json";
-import { EnkaClient } from "enka-network-api";
-import { stringify } from "flatted";
-import fs from "fs";
-import path from "path";
+const CircularJSON = require("circular-json");
+const { EnkaClient } = require("enka-network-api");
+const { stringify } = require("flatted");
+const fs = require("fs");
+const path = require("path");
 
 const cacheDir = "/tmp/cache";
 if (!fs.existsSync(cacheDir)) {
