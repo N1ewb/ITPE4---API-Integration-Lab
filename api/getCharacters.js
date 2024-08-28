@@ -1,12 +1,12 @@
+import CircularJSON from "circular-json";
 import { EnkaClient } from "enka-network-api";
-import { stringify } from "flatted";
 
 const enka = new EnkaClient({
   showFetchCacheLog: true,
 });
 
-// Setup cache and activate auto-updater
-(async () => {
+// Async function to setup cache and activate auto-updater
+async function initializeEnkaClient() {
   await enka.cachedAssetsManager.cacheDirectorySetup();
   enka.cachedAssetsManager.activateAutoCacheUpdater({
     instant: true,
@@ -19,7 +19,10 @@ const enka = new EnkaClient({
       console.log("Updating Completed!");
     },
   });
-})();
+}
+
+// Ensure EnkaClient is initialized
+let enkaInitialized = false;
 
 export default async function handler(req, res) {
   if (req.method !== "GET") {
@@ -28,8 +31,16 @@ export default async function handler(req, res) {
   }
 
   try {
+    // Initialize EnkaClient if not already done
+    if (!enkaInitialized) {
+      await initializeEnkaClient();
+      enkaInitialized = true;
+    }
+
+    // Fetch characters after initialization
     const characters = enka.getAllCharacters();
     const jsonString = CircularJSON.stringify(characters);
+    res.setHeader("Content-Type", "application/json");
     res.status(200).send(jsonString);
   } catch (error) {
     console.error("Error fetching characters:", error);
