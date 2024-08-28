@@ -14,27 +14,34 @@ const enka = new EnkaClient({
   showFetchCacheLog: true,
 });
 
-await enka.cachedAssetsManager.cacheDirectorySetup();
-await new Promise((resolve) => setTimeout(resolve, 5000));
-enka.cachedAssetsManager.activateAutoCacheUpdater({
-  instant: true,
-  timeout: 60 * 60 * 1000,
-  onUpdateStart: async () => {
-    console.log("Updating Genshin Data...");
-  },
-  onUpdateEnd: async () => {
-    enka.cachedAssetsManager.refreshAllData();
-    console.log("Updating Completed!");
-  },
-});
+(async () => {
+  await enka.cachedAssetsManager.cacheDirectorySetup();
+  await new Promise((resolve) => setTimeout(resolve, 5000));
+  enka.cachedAssetsManager.activateAutoCacheUpdater({
+    instant: true,
+    timeout: 60 * 60 * 1000,
+    onUpdateStart: async () => {
+      console.log("Updating Genshin Data...");
+    },
+    onUpdateEnd: async () => {
+      enka.cachedAssetsManager.refreshAllData();
+      console.log("Updating Completed!");
+    },
+  });
+})();
 
 exports.handler = async function (event, context) {
   try {
     await enka.cachedAssetsManager.waitForCacheReady();
-
     const characters = enka.getAllCharacters();
     const jsonString = CircularJSON.stringify(characters);
-    return jsonString;
+    return {
+      statusCode: 200,
+      body: jsonString,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
   } catch (error) {
     return {
       statusCode: 500,
