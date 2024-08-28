@@ -2,7 +2,7 @@ import { EnkaClient } from "enka-network-api";
 import { stringify } from "flatted";
 
 const enka = new EnkaClient({
-  cacheDirectory: "/tmp/cache",
+  cacheDirectory: "./cache",
   showFetchCacheLog: true,
 });
 
