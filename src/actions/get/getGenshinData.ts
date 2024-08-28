@@ -4,9 +4,12 @@ export const getGenshinCharacter = async (): Promise<GenshinCharacter[]> => {
   try {
     const response = await fetch("/api/characters");
     if (!response.ok) {
-      throw new Error(
-        `Network response was not ok. Status: ${response.status}`
-      );
+      const response = await fetch("/.netlify/functions/getCharacters");
+      if (!response.ok) {
+        throw new Error(
+          `Network response was not ok. Status: ${response.status}`
+        );
+      }
     }
     const characters: GenshinCharacter[] = await response.json();
     console.log(characters);
