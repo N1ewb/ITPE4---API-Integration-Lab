@@ -5,6 +5,7 @@ import Layout from "./pages/Layout";
 import ValorantPage from "./pages/ValorantAPI/ValorantPage";
 import GenshinPage from "./pages/GenshinAPI/GenshinPage";
 import AgentDetailPage from "./pages/ValorantAPI/AgentDetailPage/AgentDetailPage";
+import CharacterDetailPage from "./pages/GenshinAPI/CharacterDetailPage/CharacterDetailPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -27,6 +28,10 @@ function App() {
         {
           path: "/GenshinPage",
           element: <GenshinPage />,
+        },
+        {
+          path: "/GenshinPage/:id",
+          element: <CharacterDetailPage />,
         },
       ],
     },

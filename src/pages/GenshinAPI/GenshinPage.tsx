@@ -3,6 +3,8 @@ import "./GenshinPage.css";
 import { GenshinCharacter } from "../../lib/types";
 import { getGenshinCharacter } from "../../actions/get/getGenshinData";
 import GenshinCharacterCards from "../../components/GenshinCharacterCards/GenshinCharacterCards";
+import Loader from "../../components/Loader/Loader";
+import GenshinLogo from "../../assets/Genshin-Impact-Logo-.webp";
 
 const ITEMS_PER_PAGE = 27;
 
@@ -11,21 +13,59 @@ const GenshinPage = () => {
     GenshinCharacter[]
   >([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [temp, setTemp] = useState<GenshinCharacter[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const handleSearchCharacter = (searchQuery: string) => {
+      setIsLoading(true);
+      setGenshinCharacters(temp);
+      setCurrentPage(1);
+      try {
+        const searchedCharacter = temp.filter((character: GenshinCharacter) =>
+          character._nameId.toLowerCase().includes(searchQuery)
+        );
+        setGenshinCharacters(searchedCharacter);
+      } catch (error: Error | any) {
+        if (error instanceof Error) {
+          console.log(`Error in retreiving characters: ${error.message}`);
+        } else {
+          console.log("Error is unknown");
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    handleSearchCharacter(searchQuery);
+  }, [searchQuery]);
 
   useEffect(() => {
     const handleGetGenshinCharacters = async () => {
-      const characters = await getGenshinCharacter();
+      setIsLoading(true);
+      try {
+        const characters = await getGenshinCharacter();
 
-      const uniqueCharacters = Array.from(
-        new Map(
-          characters.map((character) => [
-            character.details.characterId,
-            character,
-          ])
-        ).values()
-      );
+        const uniqueCharacters = Array.from(
+          new Map(
+            characters.map((character) => [
+              character.details.characterId,
+              character,
+            ])
+          ).values()
+        );
 
-      setGenshinCharacters(uniqueCharacters);
+        setGenshinCharacters(uniqueCharacters);
+        setTemp(uniqueCharacters);
+      } catch (error: Error | any) {
+        if (error instanceof Error) {
+          console.log(`Error in retreiving characters: ${error.message}`);
+        } else {
+          console.log("Error is unknown");
+        }
+      } finally {
+        setIsLoading(false);
+      }
     };
     handleGetGenshinCharacters();
   }, []);
@@ -55,11 +95,21 @@ const GenshinPage = () => {
     </button>
   ));
 
+  if (isLoading) {
+    return <Loader />;
+  }
+
   return (
     <div className="genshin-page-container">
       <div className="genshin-page-header">
-        <p>Genshin Impact</p>
-        <input name="search" type="text" placeholder="Search characters..." />
+        <img src={GenshinLogo} alt="genshin-logo" />
+        <input
+          name="search"
+          type="text"
+          placeholder="Search characters..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
       </div>
       <div className="genshin-page-content">
         <div className="genshin-page-chacraters">

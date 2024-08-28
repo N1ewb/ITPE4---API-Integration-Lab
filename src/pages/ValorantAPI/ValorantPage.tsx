@@ -3,10 +3,14 @@ import { Agent, Role } from "../../lib/types";
 import { getValorantAgent } from "../../actions/get/getValorant";
 import AgentCards from "../../components/AgentCards/AgentCards";
 import { Roles } from "../../lib/global";
-import RoleCards from "../../components/RoleCards/RoleCards";
-import MenuIcon from "../../assets/dots-menu.png";
-import "./ValorantPage.css";
 import Loader from "../../components/Loader/Loader";
+import RoleCards from "../../components/RoleCards/RoleCards";
+
+import MenuIcon from "../../assets/dots-menu.png";
+import Valoranticon from "../../assets/valorant-logo.png";
+
+import "./ValorantPage.css";
+
 const ValorantPage = () => {
   const [agentList, setAgentList] = useState<Agent[]>([]);
   const [temp, setTempList] = useState<Agent[]>([]);
@@ -74,7 +78,7 @@ const ValorantPage = () => {
   return (
     <div className="valorant-page-container">
       <div className="header">
-        <h1>Agents</h1>
+        <img className="valorant-icon" src={Valoranticon} alt="valorant-icon" />
         <div className="role-list-container">
           <div className="role-card-container">
             <img

@@ -53,11 +53,10 @@ export interface GenshinCharacter {
   element: Element | null;
   elementalBurst: ElementalBurst | null;
   elementalSkill: ElementalSkill | null;
-  enka: EnkaClient;
   gachaSlice: ImageAssets;
   gender: Gender;
   icon: ImageAssets;
-  id: number;
+  id: string;
   isArchon: boolean;
   isTraveler: boolean;
   name: TextAssets;
@@ -69,7 +68,7 @@ export interface GenshinCharacter {
   sideIcon: ImageAssets;
   skillDepotId: number;
   skills: Skill[];
-  splashImage: ImageAssets;
+  splashImage: SplashImage;
   stars: number;
   weaponType: WeaponType;
 }
@@ -151,16 +150,35 @@ export interface Vision {
   directory: string | null;
 }
 
+export interface SplashImage {
+  enka: string;
+  imageBaseUrl: string;
+  imageType: string | null;
+  isAvailable: boolean;
+  mihoyoUrl: string;
+  name: string;
+  url: string;
+}
+
 export type JsonObject = { [key: string]: any };
+
 export type Arkhe = any; // Replace with actual structure
 export type BodyType = any; // Replace with actual structure
-export type ImageAssets = any; // Replace with actual structure
+export interface ImageAssets {
+  enka: string;
+  imageBaseUrl: string;
+  imageType: string | null;
+  isAvailable: boolean;
+  mihoyoUrl: string;
+  name: string;
+  url: string;
+}
+
 export type Costume = any; // Replace with actual structure
 export type TextAssets = any; // Replace with actual structure
 export type Element = any; // Replace with actual structure
 export type ElementalBurst = any; // Replace with actual structure
 export type ElementalSkill = any; // Replace with actual structure
-export type EnkaClient = any; // Replace with actual structure
 export type Gender = any; // Replace with actual structure
 export type NormalAttack = any; // Replace with actual structure
 export type PassiveTalent = any; // Replace with actual structure

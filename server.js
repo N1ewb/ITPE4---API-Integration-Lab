@@ -3,6 +3,7 @@ const CircularJSON = require("circular-json");
 const { EnkaClient } = require("enka-network-api");
 
 const app = express();
+app.use(express.json());
 
 const enka = new EnkaClient({
   cacheDirectory: "./cache",
@@ -31,6 +32,21 @@ app.get("/api/characters", async (req, res) => {
     const characters = enka.getAllCharacters();
     const jsonString = CircularJSON.stringify(characters);
     res.send(jsonString);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get("/api/charactersByID", async (req, res) => {
+  const characterId = parseInt(req.query.id, 10);
+  if (isNaN(characterId)) {
+    return res.status(400).json({ error: "Invalid character ID" });
+  }
+
+  try {
+    const character = await enka.getCharacterById(characterId);
+    const jsonString = CircularJSON.stringify(character);
+    res.status(200).send(jsonString);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

@@ -9,14 +9,24 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 80%;
+    height: 75%;
+    padding: 20px;
+
 }
 
 .genshin-page-header{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 20px;
+    align-items: center;
+    padding: 20px 50px 20px 50px;
+    height: 60px;
+    background-color: #121418;
+}
+
+.genshin-page-header img {
+  width: auto;
+  height: 100%;
 }
 
 .genshin-page-chacraters{

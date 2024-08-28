@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Ability, Agent } from "../../../lib/types";
 import { getValorantAgentByUUID } from "../../../actions/get/getValorant";
+import Loader from "../../../components/Loader/Loader";
 import Back from "../../../assets/previous.png";
 
 import "./AgentDetailPage.css";
-import Loader from "../../../components/Loader/Loader";
 
 const AgentDetailPage: React.FC = () => {
   const { uuid } = useParams<{ uuid: string }>();

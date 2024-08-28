@@ -44,7 +44,14 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     padding: 20px 50px 20px 50px;
+    height: 60px;
     background-color: #163555ff;
     color: white;
+}
+
+.valorant-icon {
+    width: auto;
+    height: 30px;
 }
