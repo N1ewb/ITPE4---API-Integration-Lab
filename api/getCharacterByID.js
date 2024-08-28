@@ -24,7 +24,7 @@ async function initializeEnkaClient() {
 // Ensure EnkaClient is initialized
 let enkaInitialized = false;
 
-async function getCharacters() {
+async function getCharacters(characterId) {
   // Initialize EnkaClient if not already done
   if (!enkaInitialized) {
     await initializeEnkaClient();
@@ -32,7 +32,7 @@ async function getCharacters() {
   }
 
   // Fetch characters after initialization
-  const characters = await enka.getAllCharacters(); // Ensure this is awaited
+  const characters = await enka.getCharacterById(characterId); // Ensure this is awaited
   return CircularJSON.stringify(characters);
 }
 
@@ -48,7 +48,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const character = await enka.getCharacterById(characterId);
+    const character = await getCharacters(characterId);
     res.setHeader("Content-Type", "application/json");
     res.status(200).send(character);
   } catch (error) {
