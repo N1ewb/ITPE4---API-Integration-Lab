@@ -16,6 +16,7 @@ export const getGenshinCharacter = async (): Promise<GenshinCharacter[]> => {
         }
       }
     }
+    //get
     const characters: GenshinCharacter[] = await response.json();
     console.log(characters);
     return characters;
