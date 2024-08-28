@@ -1,0 +1,28 @@
+
+.genshin-character-cards-container{
+    background-color: #ffffff; 
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden; 
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    cursor: pointer; 
+    width: 160px;
+}
+
+.genshin-character-cards-container:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
+  }
+
+.genshin-character-cards-container img{
+    width: 100%;
+    height: auto;
+}
+.genshin-character-cards-container p {
+    font-size: 1rem; 
+    font-weight: 500;
+    color: #333; 
+    margin: 10px 0; 
+    padding: 0 10px; 
+}

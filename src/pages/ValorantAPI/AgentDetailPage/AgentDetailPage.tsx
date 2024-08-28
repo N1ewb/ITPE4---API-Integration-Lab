@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Agent } from "../../../lib/types";
-import "./AgentDetailPage.css";
+import { Ability, Agent } from "../../../lib/types";
 import { getValorantAgentByUUID } from "../../../actions/get/getValorant";
+import Back from "../../../assets/previous.png";
+
+import "./AgentDetailPage.css";
+import Loader from "../../../components/Loader/Loader";
 
 const AgentDetailPage: React.FC = () => {
   const { uuid } = useParams<{ uuid: string }>();
@@ -27,7 +30,7 @@ const AgentDetailPage: React.FC = () => {
   }, [uuid]);
 
   if (isLoading) {
-    return <div className="loading-container">Loading...</div>;
+    return <Loader />;
   }
 
   if (!agent) {
@@ -41,7 +44,11 @@ const AgentDetailPage: React.FC = () => {
 
   return (
     <div className="agent-detail-container">
-      <Link to="/ValorantPage">Back</Link>
+      <div className="back-button">
+        <Link to="/ValorantPage">
+          <img src={Back} alt="back-icon" />
+        </Link>
+      </div>
       <div className="agent-content-contaner">
         <div className="agent-name-container">
           <h1>{agent.displayName}</h1>
@@ -61,6 +68,16 @@ const AgentDetailPage: React.FC = () => {
                 <p>{agent.role.description}</p>
               </div>
             </div>
+            <div className="ability-description">
+              <h3>Abilities</h3>
+
+              {agent.abilities.map((ability: Ability) => (
+                <div key={ability.displayName} className="">
+                  <h5>{ability.displayName}</h5>
+                  <p>{ability.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
           <div
             className="agent-overview"
@@ -79,10 +96,7 @@ const AgentDetailPage: React.FC = () => {
             <div className="ability-grid-container">
               {agent.abilities.map((ability) => (
                 <div key={ability.slot} className="ability-container">
-                  <img
-                    src={ability.displayIcon}
-                    alt={`${ability.displayName}-icon`}
-                  />
+                  <img src={ability.displayIcon} alt={`${ability.slot}`} />
                   <p>{ability.displayName}</p>
                 </div>
               ))}

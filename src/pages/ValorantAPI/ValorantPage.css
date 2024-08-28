@@ -15,15 +15,36 @@
 
 .role-list-container{
     max-width: 100%;
-    background-color: #163555ff;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 20px;
+}
+
+.role-list-container input {
+    position: relative;
+    padding-left: 30px; 
+}
+
+.role-list-container input::before {
+    content: url('../../assets/aim.png'); 
+    position: absolute;
+    left: 10px; 
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; 
 }
 
 .role-list-container img{
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 50px 20px 50px;
+    background-color: #163555ff;
+    color: white;
 }

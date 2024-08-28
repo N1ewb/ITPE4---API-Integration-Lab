@@ -1,12 +1,24 @@
 .agent-detail-container{
     background-color: #1b1d24 ;
     color: white;
-    padding: 50px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    height: 100%;
+    min-height: 100vh;
+}
+
+.back-button {
+    width: 100%;
+    
+}
+.back-button img{
+    width: 40px;
+    height: auto;
+    transition: transform 0.3s ease-in-out; 
+}
+.back-button img:hover{
+    transform: translateX(15px);
 }
 
 .agent-content-contaner{
@@ -26,13 +38,17 @@
     display: flex;
     flex-direction: column;
     gap: 50px;
+    width: 100%;
 }
 
 .agent-overview{
     text-align: center;
     border: 1px solid black;
     border-radius: 10px;
-    width: 30%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .agent-overview img {
@@ -50,17 +66,18 @@
 
 .ability-grid-container {
     background-color: #163555ff;
-    display: grid;
-    grid-template-columns: 180px 180px;
-    grid-template-rows: 100px 100px;
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 10px;
-    gap: 5px;
+    flex-wrap: wrap;
+    width: 100%;
 }
 .ability-container {
     background-color: #163555ff;
     border: 1px solid #ffffff;
+    width: 47%;
+    padding: 3px;
 }
 
 
@@ -86,4 +103,27 @@
 .agent-role-name img {
     width: auto;
     height: 25px;
+}
+
+.ability-description{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.ability-description-card {
+    padding: 20px;
+}
+
+.ability-description p{
+    font-size: 14px;
+}
+
+@media screen and (max-width: 980px) {
+    .agent-showcase-container{
+        flex-direction: column-reverse;
+    }
+    .agent-overview {
+        width: 100%;
+    }
 }

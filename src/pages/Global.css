@@ -18,3 +18,15 @@ main {
     width: 85%;
     height: 100%;
 }
+
+@media screen and (max-width: 375px) {
+    main {
+        width: 100%;
+    }
+    .outlet{
+        width: 100%;
+    }
+    .sidebar{
+        display: none;
+    }
+}
