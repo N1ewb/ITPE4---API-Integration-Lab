@@ -1,28 +1,13 @@
-[
-build
-]
+[build]
+  command = "CI= npm run build"
+   publish = "dist/"
   functions = "functions"
-  publish = "public"
-
-[
-functions
-]
+[functions]
   node_bundler = "esbuild"
-
-[[
-redirects
-]]
+[[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
-
-[
-dev
-]
+[dev]
   functions = "functions"
   publish = "public"
-
-[
-build.environment
-]
-  NODE_VERSION = "18"
