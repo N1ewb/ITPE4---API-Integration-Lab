@@ -37,15 +37,20 @@ async function getCharacters() {
 }
 
 export default async function handler(req, res) {
+  const characterId = parseInt(req.query.id, 10);
+  if (isNaN(characterId)) {
+    return res.status(400).json({ error: "Invalid character ID" });
+  }
+
   if (req.method !== "GET") {
     res.status(405).json({ error: "Method Not Allowed" });
     return;
   }
 
   try {
-    const jsonString = await getCharacters(); // Await getCharacters()
+    const character = await enka.getCharacterById(characterId);
     res.setHeader("Content-Type", "application/json");
-    res.status(200).send(jsonString);
+    res.status(200).send(character);
   } catch (error) {
     console.error("Error fetching characters:", error);
     res.status(500).json({ error: error.message });

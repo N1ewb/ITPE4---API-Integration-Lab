@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "circular-json": "^0.5.9",
+    "cors": "^2.8.5",
     "enka-network-api": "^4.4.0",
     "express": "^4.19.2",
     "flatted": "^3.3.1",
