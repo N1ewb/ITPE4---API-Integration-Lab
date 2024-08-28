@@ -15,19 +15,28 @@ const enka = new EnkaClient({
 });
 
 (async () => {
-  await enka.cachedAssetsManager.cacheDirectorySetup();
+  try {
+    // Setup cache directory and download assets
+    await enka.cachedAssetsManager.cacheDirectorySetup();
 
-  enka.cachedAssetsManager.activateAutoCacheUpdater({
-    instant: true,
-    timeout: 60 * 60 * 1000, // 1 hour
-    onUpdateStart: async () => {
-      console.log("Updating Genshin Data...");
-    },
-    onUpdateEnd: async () => {
-      await enka.cachedAssetsManager.refreshAllData();
-      console.log("Updating Completed!");
-    },
-  });
+    // Start cache updater
+    enka.cachedAssetsManager.activateAutoCacheUpdater({
+      instant: true,
+      timeout: 60 * 60 * 1000, // 1 hour
+      onUpdateStart: async () => {
+        console.log("Updating Genshin Data...");
+      },
+      onUpdateEnd: async () => {
+        await enka.cachedAssetsManager.refreshAllData();
+        console.log("Updating Completed!");
+      },
+    });
+
+    // Refresh data to ensure everything is in place
+    await enka.cachedAssetsManager.refreshAllData();
+  } catch (err) {
+    console.error("Error during setup or update:", err);
+  }
 })();
 
 exports.handler = async function (event, context) {
