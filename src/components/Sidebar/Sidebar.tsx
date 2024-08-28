@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Sidebar.css";
 
 const Sidebar = () => {
@@ -5,8 +6,8 @@ const Sidebar = () => {
     <div className="sidebar-container">
       <h2>Dashboard</h2>
       <div className="sidebar-links">
-        <a href="/ValorantPage">Valorant</a>
-        <a href="/GenshinPage">Genshin</a>
+        <Link to="/ValorantPage">Valorant</Link>
+        <Link to="/GenshinPage">Genshin</Link>
       </div>
     </div>
   );
