@@ -1,14 +1,14 @@
 const CircularJSON = require("circular-json");
 const { EnkaClient } = require("enka-network-api");
-const { stringify } = require("flatted");
 const fs = require("fs");
-const path = require("path");
 
+// Set up cache directory
 const cacheDir = "/tmp/cache";
 if (!fs.existsSync(cacheDir)) {
   fs.mkdirSync(cacheDir, { recursive: true });
 }
 
+// Initialize EnkaClient
 const enka = new EnkaClient({
   cacheDirectory: cacheDir,
   showFetchCacheLog: true,
@@ -16,15 +16,15 @@ const enka = new EnkaClient({
 
 (async () => {
   await enka.cachedAssetsManager.cacheDirectorySetup();
-  await new Promise((resolve) => setTimeout(resolve, 5000));
+
   enka.cachedAssetsManager.activateAutoCacheUpdater({
     instant: true,
-    timeout: 60 * 60 * 1000,
+    timeout: 60 * 60 * 1000, // 1 hour
     onUpdateStart: async () => {
       console.log("Updating Genshin Data...");
     },
     onUpdateEnd: async () => {
-      enka.cachedAssetsManager.refreshAllData();
+      await enka.cachedAssetsManager.refreshAllData();
       console.log("Updating Completed!");
     },
   });
@@ -32,9 +32,12 @@ const enka = new EnkaClient({
 
 exports.handler = async function (event, context) {
   try {
-    await enka.cachedAssetsManager.waitForCacheReady();
-    const characters = enka.getAllCharacters();
-    const jsonString = CircularJSON.stringify(characters);
+    // Wait for cache to be ready by checking and initializing if necessary
+    await enka.cachedAssetsManager.cacheDirectorySetup();
+
+    const characters = enka.getAllCharacters(); // Fetch all characters
+    const jsonString = CircularJSON.stringify(characters); // Convert to JSON
+
     return {
       statusCode: 200,
       body: jsonString,
@@ -43,6 +46,8 @@ exports.handler = async function (event, context) {
       },
     };
   } catch (error) {
+    console.error("Error fetching characters:", error);
+
     return {
       statusCode: 500,
       body: JSON.stringify({ error: error.message }),
