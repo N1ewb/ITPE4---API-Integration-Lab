@@ -2,11 +2,11 @@ import { GenshinCharacter } from "../../lib/types";
 
 export const getGenshinCharacter = async (): Promise<GenshinCharacter[]> => {
   try {
-    const response = await fetch("/api/characters");
+    const response = await fetch(
+      "https://itpe-4-api-integration-lab.vercel.app/api/getCharacters"
+    );
     if (!response.ok) {
-      const response = await fetch(
-        "https://itpe-4-api-integration-lab.vercel.app/api/getCharacters"
-      );
+      const response = await fetch("/api/characters");
       if (!response.ok) {
         const response = await fetch("/.netlify/functions/getCharacters");
         if (!response.ok) {
