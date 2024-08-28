@@ -1,3 +1,4 @@
+import CircularJSON from "circular-json";
 import { EnkaClient } from "enka-network-api";
 import { stringify } from "flatted";
 
@@ -22,15 +23,8 @@ enka.cachedAssetsManager.activateAutoCacheUpdater({
 exports.handler = async function (event, context) {
   try {
     const characters = enka.getAllCharacters();
-    const jsonString = stringify(characters);
-
-    return {
-      statusCode: 200,
-      body: jsonString,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
+    const jsonString = CircularJSON.stringify(characters);
+    return jsonString;
   } catch (error) {
     return {
       statusCode: 500,
