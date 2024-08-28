@@ -2,13 +2,16 @@ import { GenshinCharacter } from "../../lib/types";
 
 export const getGenshinCharacter = async (): Promise<GenshinCharacter[]> => {
   try {
-    const response = await fetch("/api/characters");
+    const response = await fetch("/api/getCharacters");
     if (!response.ok) {
       const response = await fetch("/.netlify/functions/getCharacters");
       if (!response.ok) {
-        throw new Error(
-          `Network response was not ok. Status: ${response.status}`
-        );
+        const response = await fetch("/api/characters");
+        if (!response.ok) {
+          throw new Error(
+            `Network response was not ok. Status: ${response.status}`
+          );
+        }
       }
     }
     const characters: GenshinCharacter[] = await response.json();

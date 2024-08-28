@@ -25,7 +25,7 @@ enka.cachedAssetsManager.activateAutoCacheUpdater({
 const app = express();
 app.use(express.json());
 
-app.get("/api/characters", async (req, res) => {
+app.get("/api/getCharacters", async (req, res) => {
   try {
     const characters = enka.getAllCharacters();
     const jsonString = stringify(characters);
