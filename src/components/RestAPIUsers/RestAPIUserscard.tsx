@@ -1,5 +1,5 @@
 import { RestAPIUser } from "../../lib/types";
-import "./RestAPIUserscard.css";
+import "./RestAPIUsersCard.css";
 
 interface RestAPIUserscardProps {
   user: RestAPIUser;
