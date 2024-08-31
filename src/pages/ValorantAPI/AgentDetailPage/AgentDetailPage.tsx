@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Ability, Agent } from "../../../lib/types";
-import { getValorantAgentByUUID } from "../../../actions/get/getValorant";
+import { getValorantAgentByUUID } from "../../../actions/api/get/getValorant";
 import Loader from "../../../components/Loader/Loader";
 import Back from "../../../assets/previous.png";
 

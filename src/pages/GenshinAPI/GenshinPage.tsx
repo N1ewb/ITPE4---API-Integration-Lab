@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./GenshinPage.css";
 import { GenshinCharacter } from "../../lib/types";
-import { getGenshinCharacter } from "../../actions/get/getGenshinData";
+import { getGenshinCharacter } from "../../actions/api/get/getGenshinData";
 import GenshinCharacterCards from "../../components/GenshinCharacterCards/GenshinCharacterCards";
 import Loader from "../../components/Loader/Loader";
 import GenshinLogo from "../../assets/Genshin-Impact-Logo-.webp";

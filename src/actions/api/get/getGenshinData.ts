@@ -1,4 +1,4 @@
-import { GenshinCharacter } from "../../lib/types";
+import { GenshinCharacter } from "../../../lib/types";
 
 export const getGenshinCharacter = async (): Promise<GenshinCharacter[]> => {
   let characters: GenshinCharacter[] = [];

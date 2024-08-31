@@ -1,0 +1,48 @@
+.user-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 20px;
+    width: 300px;
+    transition: transform 0.2s;
+    border: 1px solid #e0e0e0;
+  }
+  
+  .user-card:hover {
+    transform: translateY(-5px); /* Adds a lift effect on hover */
+  }
+  
+  .user-card-header {
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .user-card-header h3 {
+    margin: 0;
+    color: #333;
+  }
+  
+  .user-card-header p {
+    margin: 5px 0 0;
+    color: #777;
+    font-size: 0.9rem;
+  }
+  
+  .user-card-body p {
+    margin: 5px 0;
+    font-size: 0.85rem;
+    color: #555;
+  }
+  
+  .user-card-body a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .user-card-body a:hover {
+    text-decoration: underline;
+  }
+  

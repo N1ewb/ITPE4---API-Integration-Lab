@@ -1,5 +1,5 @@
-import { VALORANT_API_LINK } from "../../lib/global";
-import { Agent } from "../../lib/types";
+import { VALORANT_API_LINK } from "../../../lib/global";
+import { Agent } from "../../../lib/types";
 
 export const getValorantAgent = async (): Promise<Agent[]> => {
   try {

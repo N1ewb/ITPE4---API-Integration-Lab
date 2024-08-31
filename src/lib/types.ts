@@ -186,3 +186,33 @@ export type CharacterRarity = any; // Replace with actual structure
 export type Skill = any; // Replace with actual structure
 export type WeaponType = any; // Replace with actual structure
 export type NameCard = any; // Replace with actual structure
+
+export interface Geo {
+  lat: string;
+  lng: string;
+}
+
+export interface Address {
+  street: string;
+  suite: string;
+  city: string;
+  zipcode: string;
+  geo: Geo;
+}
+
+export interface Company {
+  name: string;
+  catchPhrase: string;
+  bs: string;
+}
+
+export interface RestAPIUser {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+  address: Address;
+  phone: string;
+  website: string;
+  company: Company;
+}

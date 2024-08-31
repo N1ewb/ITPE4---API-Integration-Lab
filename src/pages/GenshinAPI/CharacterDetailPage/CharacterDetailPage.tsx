@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import "./CharacterDetailPage.css";
 import { useEffect, useState } from "react";
-import { getGenshinCharacterByID } from "../../../actions/get/getGenshinData";
+import { getGenshinCharacterByID } from "../../../actions/api/get/getGenshinData";
 import Back from "../../../assets/previous.png";
 import Loader from "../../../components/Loader/Loader";
 import { GenshinCharacter } from "../../../lib/types";

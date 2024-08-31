@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Agent, Role } from "../../lib/types";
-import { getValorantAgent } from "../../actions/get/getValorant";
+import { getValorantAgent } from "../../actions/api/get/getValorant";
 import AgentCards from "../../components/AgentCards/AgentCards";
 import { Roles } from "../../lib/global";
 import Loader from "../../components/Loader/Loader";
@@ -78,24 +78,30 @@ const ValorantPage = () => {
   return (
     <div className="valorant-page-container">
       <div className="header">
-        <img className="valorant-icon" src={Valoranticon} alt="valorant-icon" />
-        <div className="role-list-container">
-          <div className="role-card-container">
-            <img
-              src={MenuIcon}
-              alt="all-icon"
-              onClick={() => handleSetAllAgents()}
-            />
-          </div>
-          {Roles &&
-            Roles.map((role: Role) => (
-              <RoleCards
-                key={role.uuid}
-                role={role}
-                setAgentList={setAgentList}
-                handleFilterByRoles={handleFilterByRoles}
+        <div className="header-separator">
+          <img
+            className="valorant-icon"
+            src={Valoranticon}
+            alt="valorant-icon"
+          />
+          <div className="role-list-container">
+            <div className="role-card-container">
+              <img
+                src={MenuIcon}
+                alt="all-icon"
+                onClick={() => handleSetAllAgents()}
               />
-            ))}
+            </div>
+            {Roles &&
+              Roles.map((role: Role) => (
+                <RoleCards
+                  key={role.uuid}
+                  role={role}
+                  setAgentList={setAgentList}
+                  handleFilterByRoles={handleFilterByRoles}
+                />
+              ))}
+          </div>
         </div>
         <input
           name="search"
