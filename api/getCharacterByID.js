@@ -1,6 +1,13 @@
 import CircularJSON from "circular-json";
 import { EnkaClient } from "enka-network-api";
 
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:5173",
+  "https://itpe4lucero-git-main-n1ewbs-projects.vercel.app",
+  "https://luceroitpe4.netlify.app",
+];
+
 const enka = new EnkaClient({
   showFetchCacheLog: true,
 });
@@ -37,6 +44,17 @@ async function getCharacters(characterId) {
 }
 
 export default async function handler(req, res) {
+  const origin = req.headers.origin;
+
+  res.send("Origin: ", origin);
+
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+    res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+  }
+
   const characterId = parseInt(req.query.id, 10);
   if (isNaN(characterId)) {
     return res.status(400).json({ error: "Invalid character ID" });

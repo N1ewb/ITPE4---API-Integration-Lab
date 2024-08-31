@@ -1,6 +1,13 @@
 import CircularJSON from "circular-json";
 import { EnkaClient } from "enka-network-api";
 
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:5173",
+  "https://itpe4lucero-git-main-n1ewbs-projects.vercel.app",
+  "https://luceroitpe4.netlify.app",
+];
+
 const enka = new EnkaClient({
   showFetchCacheLog: true,
 });
@@ -37,6 +44,20 @@ async function getCharacters() {
 }
 
 export default async function handler(req, res) {
+  const origin = req.headers.origin;
+
+  res.send("Origin: ", origin);
+
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+    res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+  }
+
+  res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
   if (req.method !== "GET") {
     res.status(405).json({ error: "Method Not Allowed" });
     return;
