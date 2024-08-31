@@ -30,3 +30,23 @@
     margin: 10px 0; 
     padding: 0 10px; 
 }
+
+@media (max-width: 560px) {
+    .genshin-character-cards-container{
+        width: 135px;
+    }
+    
+}
+
+@media (max-width: 475px) {
+    .genshin-character-cards-container{
+        width: 125px;
+    }
+    
+}
+@media (max-width: 430px) {
+    .genshin-character-cards-container{
+        width: 105px;
+    }
+    
+}

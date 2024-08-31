@@ -46,17 +46,11 @@ async function getCharacters() {
 export default async function handler(req, res) {
   const origin = req.headers.origin;
 
-  res.send("Origin: ", origin);
-
   if (allowedOrigins.includes(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
     res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    res.setHeader("Access-Control-Allow-Credentials", "true");
   }
-
-  res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
   if (req.method !== "GET") {
     res.status(405).json({ error: "Method Not Allowed" });
