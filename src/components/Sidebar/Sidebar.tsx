@@ -6,6 +6,8 @@ const Sidebar = () => {
     <div className="sidebar-container">
       <h2>Dashboard</h2>
       <div className="sidebar-links">
+        <Link to="/">Overview</Link>
+        <p>API Usage</p>
         <Link to="/ValorantPage">Valorant</Link>
         <Link to="/GenshinPage">Genshin</Link>
       </div>

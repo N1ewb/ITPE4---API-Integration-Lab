@@ -1,13 +1,16 @@
 
 .genshin-character-cards-container{
-    background-color: #ffffff; 
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden; 
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 8%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: width 0.3s ease;
     transition: transform 0.3s ease, box-shadow 0.3s ease; 
-    cursor: pointer; 
-    width: 155px;
+    text-align: center;
 }
 
 .genshin-character-cards-container a{

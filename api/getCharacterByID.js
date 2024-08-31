@@ -46,8 +46,6 @@ async function getCharacters(characterId) {
 export default async function handler(req, res) {
   const origin = req.headers.origin;
 
-  res.send("Origin: ", origin);
-
   if (allowedOrigins.includes(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
     res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS");

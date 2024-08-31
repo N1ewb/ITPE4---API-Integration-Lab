@@ -78,34 +78,30 @@ const ValorantPage = () => {
   return (
     <div className="valorant-page-container">
       <div className="header">
-        <div className="header-separator">
-          <img
-            className="valorant-icon"
-            src={Valoranticon}
-            alt="valorant-icon"
-          />
-          <div className="role-list-container">
-            <div className="role-card-container">
-              <img
-                src={MenuIcon}
-                alt="all-icon"
-                onClick={() => handleSetAllAgents()}
-              />
-            </div>
-            {Roles &&
-              Roles.map((role: Role) => (
-                <RoleCards
-                  key={role.uuid}
-                  role={role}
-                  setAgentList={setAgentList}
-                  handleFilterByRoles={handleFilterByRoles}
-                />
-              ))}
+        <img className="valorant-icon" src={Valoranticon} alt="valorant-icon" />
+        <div className="role-list-container">
+          <div className="role-card-container">
+            <img
+              src={MenuIcon}
+              alt="all-icon"
+              onClick={() => handleSetAllAgents()}
+            />
           </div>
+          {Roles &&
+            Roles.map((role: Role) => (
+              <RoleCards
+                key={role.uuid}
+                role={role}
+                setAgentList={setAgentList}
+                handleFilterByRoles={handleFilterByRoles}
+              />
+            ))}
         </div>
+
         <input
           name="search"
           type="text"
+          placeholder="Search agents..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />

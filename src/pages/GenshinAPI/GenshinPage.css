@@ -1,8 +1,11 @@
 .genshin-page-container{
+  position: relative;
+  top: 100px;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    padding-top: 100px;
+    
+    background-color: white;
 }
 
 .genshin-page-content{
@@ -36,6 +39,7 @@
     gap: 20px;
     max-height: 100%;
     overflow: auto;
+    padding: 13px;
 }
 
 .pagination-controls {

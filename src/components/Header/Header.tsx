@@ -11,10 +11,16 @@ const Header = () => {
 
   return (
     <nav>
-      <div className="logo-container"></div>
+      <div className="logo-container">
+        <Link to="/">
+          <h1>
+            ITPE Lab <img src="/flask.png" alt="flask-icon" />
+          </h1>
+        </Link>
+      </div>
       <div className="nav-links">
         <Link to="/">Home</Link>
-        <Link to="#">About Us</Link>
+        <Link to="#">About Page</Link>
         <Link to="#">Contact</Link>
       </div>
       <div className="nav-menu">
@@ -25,11 +31,21 @@ const Header = () => {
           className="menu-icon"
         />
         <div className={`dropdown ${isClicked ? "show" : "hide"}`}>
-          <Link to="/">Home</Link>
-          <Link to="#">About Us</Link>
-          <Link to="#">Contact</Link>
-          <Link to="/ValorantPage">Valorant</Link>
-          <Link to="/GenshinPage">Genshin</Link>
+          <Link onClick={handleDropdown} to="/">
+            Home
+          </Link>
+          <Link onClick={handleDropdown} to="#">
+            About Page
+          </Link>
+          <Link onClick={handleDropdown} to="#">
+            Contact
+          </Link>
+          <Link onClick={handleDropdown} to="/ValorantPage">
+            Valorant API
+          </Link>
+          <Link onClick={handleDropdown} to="/GenshinPage">
+            Genshin API
+          </Link>
         </div>
       </div>
     </nav>

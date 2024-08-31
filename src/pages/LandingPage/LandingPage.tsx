@@ -29,7 +29,7 @@ const LandingPage = () => {
       return data;
     } catch (error: Error | unknown) {
       if (error instanceof Error) {
-        throw new Error("Error: URL unknown");
+        throw new Error("Error: URL Error");
       } else {
         throw new Error("Unknown Error");
       }
@@ -78,10 +78,10 @@ const LandingPage = () => {
 
   useEffect(() => {
     if (codeRef.current) {
-      hljs.highlightBlock(codeRef.current);
+      hljs.highlightElement(codeRef.current);
     }
     if (sampleRef.current) {
-      hljs.highlightBlock(sampleRef.current);
+      hljs.highlightElement(sampleRef.current);
     }
   }, []);
 
@@ -149,6 +149,14 @@ const LandingPage = () => {
             from the provided API. Click the button below to fetch the data:
           </p>
           <button onClick={handleGetUsers}>Fetch Data</button>
+
+          {!users ? (
+            <p>Loading Users...</p>
+          ) : !isLoading ? (
+            <RestAPIUsers users={users} />
+          ) : (
+            ""
+          )}
           <p>
             The fetched data's structure should look like the following example:
           </p>
@@ -159,17 +167,36 @@ const LandingPage = () => {
           </pre>
           <h3>Understanding the Results</h3>
           <p>
-            The fetched data is displayed Below. If there is an error during the
+            The fetched data is displayed Above. If there is an error during the
             fetch, it will be logged in the console.
           </p>
+          <h3>Conclusion</h3>
+          <p>
+            In this example, we've demonstrated how to fetch data from an
+            external API using JavaScript and React. By understanding the basics
+            of APIs, you can efficiently integrate external data sources into
+            your applications, enhancing their functionality and interactivity.
+          </p>
+          <p>
+            Remember, when working with APIs, it's essential to handle errors
+            gracefully and ensure your application can manage various network
+            issues. Proper error handling, as shown in the example, allows your
+            app to provide feedback to the user when something goes wrong.
+          </p>
 
-          {!users ? (
-            <p>Loading Users...</p>
-          ) : !isLoading ? (
-            <RestAPIUsers users={users} />
-          ) : (
-            ""
-          )}
+          <h3>Closing Remarks</h3>
+          <p>
+            We hope this tutorial has provided a clear understanding of how to
+            use APIs in your React applications. Feel free to explore other APIs
+            and try implementing similar methods for data fetching. Practice
+            will help you become more comfortable with integrating APIs and make
+            your web applications more powerful and versatile.
+          </p>
+          <p>
+            <strong>
+              Thank you for visiting the ITPE API Integration Lab. Happy coding!
+            </strong>
+          </p>
         </div>
       </div>
     </div>

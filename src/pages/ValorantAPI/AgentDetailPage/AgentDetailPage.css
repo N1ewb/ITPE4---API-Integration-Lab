@@ -6,6 +6,8 @@
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
+    max-height: 100vh;
+    padding-top: 100px;  
 }
 
 .back-button {
@@ -25,7 +27,10 @@
     width: 80%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    max-height: 80vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 20px;
 }
 
 .agent-showcase-container {
@@ -67,6 +72,7 @@
 .ability-grid-container {
     background-color: #163555ff;
     display: flex;
+    flex-basis: auto;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -125,5 +131,33 @@
     }
     .agent-overview {
         width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .agent-overview {
+        width: 100%;
+    }
+    .agent-content-contaner{
+        width: 90%;
+        align-items: center;
+        
+    }
+    .agent-detail-container{
+        width: 100%;
+        padding: 10px;
+        padding-top: 120px;
+        
+    }
+    .discription-container{
+        width: 100%;
+        padding: 20px 0px 20px 0px;
+        
+    }
+    .ability-description{
+        width: 90%;
+    }
+    .ability-description-card {
+        padding: 5px;
     }
 }
